@@ -26,7 +26,11 @@ The `multi` compound mode is meant to handle more complex compounds, e.g. 73% of
 
 <img title="Multi-compound demo" src="images/multi_demo.PNG" alt="Example" data-align="left">
 
-Let's put in the periodic system (let's call it an ultra-high-entropy alloy):
+A more complicated random mixture of superconductors and BaZrO3: 42% YBa2Cu3O6.9, 42% Ba(Fe0.92Co0.08)2As2, and 16% BaZrO3:
+
+<img title="Multi-compound demo" src="images/multi_demo2.PNG" alt="Example" data-align="left">
+
+To finish, let's put in the periodic system (let's call it an ultra-high-entropy alloy):
 
 <img title="Periodic table demo 1" src="images/periodictable_demo1.PNG" alt="Example" data-align="left">
 
