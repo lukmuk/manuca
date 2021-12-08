@@ -14,21 +14,21 @@ Install the required Python packages and then run Manuca:
 
 Enter a stoichiometry, e.g. H2O and confirm with `Enter`.
 
-<img title="H2O demo" src="images/H2O_demo.png" alt="Example" data-align="left">
+<img title="H2O demo" src="https://github.com/lukmuk/manuca/blob/main/images/H2O_demo.png" alt="Example" data-align="left">
 
 Quit by entering `q`.
 
 The `multi` compound mode is meant to handle more complex compounds, e.g. 73% of H$_2$ O and 27% of SiO$_2$.
 
-<img title="Multi-compound demo" src="images/multi_demo.png" alt="Example" data-align="left">
+<img title="Multi-compound demo" src="https://github.com/lukmuk/manuca/blob/main/images/multi_demo.png" alt="Example" data-align="left">
 
 Let's put in the periodic system (let's call it an ultra-high-entropy alloy):
 
-<img title="Periodic table demo 1" src="images/periodictable_demo1.png" alt="Example" data-align="left">
+<img title="Periodic table demo 1" src="https://github.com/lukmuk/manuca/blob/main/images/periodictable_demo1.png" alt="Example" data-align="left">
 
 ... and in the end: 
 
-<img title="Periodic table demo 2" src="images/periodictable_demo2.png" alt="Example" data-align="left">
+<img title="Periodic table demo 2" src="https://github.com/lukmuk/manuca/blob/main/images/periodictable_demo2.png" alt="Example" data-align="left">
 
 The periodic-table-elements string can be generated from `mendeleev`:
 
