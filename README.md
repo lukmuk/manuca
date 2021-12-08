@@ -18,6 +18,10 @@ Enter a stoichiometry, e.g. H2O and confirm with `Enter`.
 
 Quit by entering `q`.
 
+Chemparse can handle (single-level) parentheses, here for the [Fe-based superconductor](https://en.wikipedia.org/wiki/Iron-based_superconductor) Ba(Fe0.92Co0.08)2As2:
+
+<img title="Ba122 demo" src="images/ba122_demo.PNG" alt="Example" data-align="left">
+
 The `multi` compound mode is meant to handle more complex compounds, e.g. 73% of H2O and 27% of SiO2.
 
 <img title="Multi-compound demo" src="images/multi_demo.PNG" alt="Example" data-align="left">
@@ -75,7 +79,7 @@ Manuca v0.1 calculates the following outputs:
   - Müller (1954), 
     
     <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i c_i Z_i">
-    
+  
   - Sandick & Allen (1954)
     
     <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i a_i Z^2_i/\sum_i a_i Z_i">
@@ -91,5 +95,4 @@ Manuca v0.1 calculates the following outputs:
   - Egerton (effective Z for EFTEM):
     
     <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}_\text{eff}=\sum_i a_i Z^{1.3}_i/\sum_i a_i Z^{0.3}_i">
-    
 * Total and average molecular weight in g/mol.
