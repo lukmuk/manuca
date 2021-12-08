@@ -14,21 +14,21 @@ Install the required Python packages and then run Manuca:
 
 Enter a stoichiometry, e.g. H2O and confirm with `Enter`.
 
-<img title="H2O demo" src="https://github.com/lukmuk/manuca/blob/main/images/H2O_demo.png" alt="Example" data-align="left">
+<img title="H2O demo" src="images/H2O_demo.PNG" alt="Example" data-align="left">
 
 Quit by entering `q`.
 
 The `multi` compound mode is meant to handle more complex compounds, e.g. 73% of H$_2$ O and 27% of SiO$_2$.
 
-<img title="Multi-compound demo" src="https://github.com/lukmuk/manuca/blob/main/images/multi_demo.png" alt="Example" data-align="left">
+<img title="Multi-compound demo" src="images/multi_demo.PNG" alt="Example" data-align="left">
 
 Let's put in the periodic system (let's call it an ultra-high-entropy alloy):
 
-<img title="Periodic table demo 1" src="https://github.com/lukmuk/manuca/blob/main/images/periodictable_demo1.png" alt="Example" data-align="left">
+<img title="Periodic table demo 1" src="images/periodictable_demo1.PNG" alt="Example" data-align="left">
 
 ... and in the end: 
 
-<img title="Periodic table demo 2" src="https://github.com/lukmuk/manuca/blob/main/images/periodictable_demo2.png" alt="Example" data-align="left">
+<img title="Periodic table demo 2" src="images/periodictable_demo2.PNG" alt="Example" data-align="left">
 
 The periodic-table-elements string can be generated from `mendeleev`:
 
@@ -66,29 +66,30 @@ Manuca v0.1 calculates the following outputs:
 
 - Composition in atomic % (at.%) and weight % (wt.%)
 
-- Mean/effective atomic numbers are calculated from the atomic numbers $Z_i$, the weight fractions ($c_i$), and atomic fractions ($a_i$):
+- Mean/effective atomic numbers are calculated from the atomic numbers (<img src="https://render.githubusercontent.com/render/math?math=Z_i">), the weight fractions (<img src="https://render.githubusercontent.com/render/math?math=c_i">, and atomic fractions (<img src="https://render.githubusercontent.com/render/math?math=a_i">):
   
   - Atomic-percent average:
     
-    $\overline{Z}=\sum_i a_i Z_i$
+    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i a_i Z_i">
   
   - Müller (1954), 
     
-    $\overline{Z}=\sum_i c_i Z_i$ 
-  
+    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i c_i Z_i">
+    
   - Sandick & Allen (1954)
     
-    $\overline{Z}=\sum_i a_i Z^2_i/\sum_i a_i Z_i$ 
+    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i a_i Z^2_i/\sum_i a_i Z_i">
   
   - Joyet (1953) / Hohn & Niedrig (1972) / Büchner (1973):
     
-    $\overline{Z}=\sqrt{\sum_i a_i Z^2_i}$
+    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sqrt{\sum_i a_i Z^2_i}">
   
   - Everhart (1960):
     
-    $\overline{Z}=\sum_i c_i Z^2_i/\sum_i c_i Z_i$
+    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i c_i Z^2_i/\sum_i c_i Z_i">
   
   - Egerton (effective Z for EFTEM):
     
-    $\overline{Z}_\text{eff}=\sum_i a_i Z^{1.3}_i/\sum_i a_i Z^{0.3}_i$
+    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}_\text{eff}=\sum_i a_i Z^{1.3}_i/\sum_i a_i Z^{0.3}_i">
+    
 * Total and average molecular weight in g/mol.
