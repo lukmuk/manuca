@@ -18,7 +18,7 @@ Enter a stoichiometry, e.g. H2O and confirm with `Enter`.
 
 Quit by entering `q`.
 
-The `multi` compound mode is meant to handle more complex compounds, e.g. 73% of H$_2$ O and 27% of SiO$_2$.
+The `multi` compound mode is meant to handle more complex compounds, e.g. 73% of H2O and 27% of SiO2.
 
 <img title="Multi-compound demo" src="images/multi_demo.PNG" alt="Example" data-align="left">
 
