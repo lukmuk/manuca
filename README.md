@@ -40,7 +40,7 @@ print(''.join(df['symbol'].to_list()))
 
 ## Requirements and Installation
 
-Manuca works by utilizing [chemparse]([chemparse · PyPI](https://pypi.org/project/chemparse/)) to evaluate the stoichiometric formula from a user input. Then, [mendeleev](https://github.com/lmmentel/mendeleev) is used to retrieve the element-specific data. NumPy is used for calculations.
+Manuca works by utilizing [chemparse](https://pypi.org/project/chemparse/) to evaluate the stoichiometric formula from a user input. Then, [mendeleev](https://github.com/lmmentel/mendeleev) is used to retrieve the element-specific data. NumPy is used for calculations.
 
 - Clone or download the repository (or just `manuca.py`).
 
