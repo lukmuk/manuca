@@ -10,8 +10,6 @@ The name stems from it's intended use as a **M**ean **A**tomic **Nu**mber **Ca**
 
 You can explore Manuca without installing anything by opening the Binder link above in a new tab.
 
-
-
 Install the required Python packages and then run Manuca:
 
 ``pip install numpy chemparse mendeleev``
@@ -80,7 +78,9 @@ Manuca v0.1 calculates the following outputs:
 
 - Composition in atomic % (at.%) and weight % (wt.%)
 
-- Mean/effective atomic numbers are calculated from the atomic numbers (<img src="https://render.githubusercontent.com/render/math?math=Z_i">), the weight fractions (<img src="https://render.githubusercontent.com/render/math?math=c_i">, and atomic fractions (<img src="https://render.githubusercontent.com/render/math?math=a_i">):
+- Mean/effective atomic numbers are calculated from the atomic numbers (<img src="https://render.githubusercontent.com/render/math?math=Z_i">), the weight fractions (<img src="https://render.githubusercontent.com/render/math?math=c_i">), and atomic fractions (<img src="https://render.githubusercontent.com/render/math?math=a_i">). Formulas were taken from 
+  
+  Howell, P. G. T., Davy, K. M. W. & Boyde, A. Mean atomic number and backscattered electron coefficient calculations for some materials with low mean atomic number. *Scanning* **20**, 35–40 (1998).
   
   - Atomic-percent average:
     
@@ -101,8 +101,12 @@ Manuca v0.1 calculates the following outputs:
   - Everhart (1960):
     
     <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i c_i Z^2_i/\sum_i c_i Z_i">
+*    Other properties:
   
-  - Egerton (effective Z for EFTEM):
+  * Egerton (effective Z for EFTEM):
     
     <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}_\text{eff}=\sum_i a_i Z^{1.3}_i/\sum_i a_i Z^{0.3}_i">
-* Total and average molecular weight in g/mol.
+    
+    Eq. (5.4) from Egerton, R. F. *Electron Energy-Loss Spectroscopy in the Electron Microscope*. (Springer US, 2011). doi:[10.1007/978-1-4419-9583-4](https://doi.org/10.1007/978-1-4419-9583-4).
+  
+  * Total and average atomic mass/molecular weight in g/mol.
