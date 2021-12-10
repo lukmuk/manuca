@@ -1,6 +1,6 @@
 # Manuca
 
-Manuca is a small command-line Python program to calculate various forms of the mean (or effective) atomic number and also other properties.
+Manuca is a small command-line Python program to calculate various forms of the mean (or effective) atomic number and other physical properties of compounds. 
 
 The name stems from it's intended use as a **M**ean **A**tomic **Nu**mber **Ca**lculator.
 
