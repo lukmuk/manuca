@@ -2,8 +2,8 @@ import numpy as np #https://numpy.org/
 import chemparse #https://pypi.org/project/chemparse/
 from mendeleev import element #https://github.com/lmmentel/mendeleev
 
-version = 0.1
-date = "12/2021"
+version = 0.11
+date = "02/2022"
 
 def printHelp():
     '''Print the help dialog'''
@@ -55,6 +55,12 @@ def multi_compound(n_comp):
     #Parse each compound, weight with normalized concentration factor, and append to S
     for i, c in enumerate(mc_in['comp']):
         d = chemparse.parse_formula(c)
+        
+        #Normalize each compound
+        d_sum = sum(d.values())
+        d.update((x, np.round(y/d_sum,4)) for x, y in d.items())
+        
+        #Weight with user input
         d.update((x, np.round(y*mc_in['conc'][i],4)) for x, y in d.items())
         for ele, r in d.items():
             S += ele
@@ -113,7 +119,8 @@ while True:
     meanZ_Everhart = np.round(np.sum(Wtpercents*Z**2)/np.sum(Wtpercents*Z), decimals) #Everhart 1960, Joy 1995
     
     ### Effective atomic number
-    Zeff_Egerton = np.round(np.sum(Atpercents*Z**1.3)/np.sum(Atpercents*Z**0.3), decimals) #Egerton for EFTEM
+    Zeff_Egerton = np.round(np.sum(Atpercents*Z**1.3)/np.sum(Atpercents*Z**0.3), decimals) #effective Z, Egerton for EFTEM
+    Aeff_Egerton = np.round(np.sum(Atpercents*aw**1.3)/np.sum(Atpercents*aw**0.3), decimals) #effective A, Egerton for EFTEM
     
     ### Atomic mass
     tot_atomic_mass = np.round(np.sum(w*aw), decimals)
@@ -138,8 +145,9 @@ while True:
     print('Other properties:')
     print('------------------------------')
     print(f'Zeff (Egerton, EFTEM):\t{Zeff_Egerton}')
-    print(f'Tot. at. mass (g/mol):\t{tot_atomic_mass}')
-    print(f'Avg. at. mass (g/mol):\t{avg_atomic_mass}')
+    print(f'Aeff (EFTEM, g/mol):\t{Aeff_Egerton}')
+    print(f'Tot. A (g/mol):\t\t{tot_atomic_mass}')
+    print(f'Avg. A (g/mol):\t\t{avg_atomic_mass}')
     print('==============================\n')
     
 
