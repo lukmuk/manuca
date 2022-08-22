@@ -84,33 +84,33 @@ Manuca v0.1 calculates the following outputs:
   
   - Atomic-percent average:
     
-    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i a_i Z_i">
+    $\overline{Z}=\sum_i a_i Z_i$
   
   - Müller (1954), 
     
-    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i c_i Z_i">
+    $\overline{Z}=\sum_i c_i Z_i$
   
   - Sandick & Allen (1954)
     
-    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i a_i Z^2_i/\sum_i a_i Z_i">
+    $\overline{Z}=\sum_i a_i Z^2_i/\sum_i a_i Z_i$
   
   - Joyet (1953) / Hohn & Niedrig (1972) / Büchner (1973):
     
-    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sqrt{\sum_i a_i Z^2_i}">
+    $\overline{Z}=\sqrt{\sum_i a_i Z^2_i}$
   
   - Everhart (1960):
     
-    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i c_i Z^2_i/\sum_i c_i Z_i">
+    $\overline{Z}=\sum_i c_i Z^2_i/\sum_i c_i Z_i$
     
   - [Donovan](https://doi.org/10.1017/S1431927603030137) (2003, with x = 0.8):
   
-    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}=\sum_i a_i Z^{1.8}_i/\sum_i a_i Z_i^{0.8}">
+    $\overline{Z}=\sum_i a_i Z^{1.8}_i/\sum_i a_i Z_i^{0.8}$
   
 *    Other properties:
   
   * Egerton (effective Z for EFTEM):
     
-    <img src="https://render.githubusercontent.com/render/math?math=\overline{Z}_\text{eff}=\sum_i a_i Z^{1.3}_i/\sum_i a_i Z^{0.3}_i">
+    $\overline{Z}_\text{eff}=\sum_i a_i Z^{1.3}_i/\sum_i a_i Z^{0.3}_i$
     
     Eq. (5.4) from Egerton, R. F. *Electron Energy-Loss Spectroscopy in the Electron Microscope*. (Springer US, 2011). doi:[10.1007/978-1-4419-9583-4](https://doi.org/10.1007/978-1-4419-9583-4).
   
