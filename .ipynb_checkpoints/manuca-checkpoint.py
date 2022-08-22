@@ -2,8 +2,8 @@ import numpy as np #https://numpy.org/
 import chemparse #https://pypi.org/project/chemparse/
 from mendeleev import element #https://github.com/lmmentel/mendeleev
 
-version = 0.12
-date = "02/2022"
+version = 0.13
+date = "08/2022"
 
 def printHelp():
     '''Print the help dialog'''
@@ -15,12 +15,13 @@ def printHelp():
     print('  "Chemical formula" -> The parsed formula read from the user input.')
     print('  "Composition table" -> Composition in atomic % (at.%) and weight % (wt.%).')
     print('  "Mean atomic number" -> Various forms of the mean atomic number as listed in Howell et al, Scanning 20 (1998):')
-    print('    "Mueller (1954) -> Mueller, Phys. Rev. 93, 891 (1954).')
-    print('    "Saldick & Allen (1954) --> Saldick and Allen, J Chem Phys 22 (1954).')
-    print('    "Joyet (1954) -> Joyet et al, The Dosage of Gamma Radiation at Very High Energies. The Brown Boveri Betatron, (1954).')
-    print('    "Joyet (1954) -> Hohn and Niedrig: Elektronrenrückstreuung an dünnen Metall-undIsolatorschichten. Optik 35 (1972)')
-    print('    "Joyet (1954) -> Buechner, Bestimmung der mittleren Ordnungszahl vonLegierungen bei der quantitativen Mikrosondenanalyse, Arch Eisenhüttenwesen 44 (1973)')
-    print('    "Everhart (1960) -> Everhart, Simple theory concerning the reflection of electrons from solids. J Appl Phys 31 (1960)')
+    print('    "Mueller (1954) -> Mueller, Phys. Rev. 93, 891 (1954), Source:  https://doi.org/10.1002/sca.1998.4950200105')
+    print('    "Saldick & Allen (1954) --> Saldick and Allen, J Chem Phys 22 (1954), Source:  https://doi.org/10.1002/sca.1998.4950200105')
+    print('    "Joyet (1954) -> Joyet et al, The Dosage of Gamma Radiation at Very High Energies. The Brown Boveri Betatron, (1954), Source:  https://doi.org/10.1002/sca.1998.4950200105')
+    print('    "Joyet (1954) -> Hohn and Niedrig: Elektronrenrückstreuung an dünnen Metall-undIsolatorschichten. Optik 35 (1972), Source:  https://doi.org/10.1002/sca.1998.4950200105')
+    print('    "Joyet (1954) -> Buechner, Bestimmung der mittleren Ordnungszahl vonLegierungen bei der quantitativen Mikrosondenanalyse, Arch Eisenhüttenwesen 44 (1973), Source: https://doi.org/10.1002/sca.1998.4950200105')
+    print('    "Everhart (1960) -> Everhart, Simple theory concerning the reflection of electrons from solids. J Appl Phys 31 (1960), https://doi.org/10.1063/1.1735868')
+    print('    "Donovan (2003) -> Donovan, J., Pingitore, N., & Westphal, A. (2003). Compositional Averaging of Backscatter Intensities in Compounds. Microscopy and Microanalysis, 9(3), 202-215. https://doi.org/10.1017/S1431927603030137')
     print('  "Other properties" -> Other compound properties which can be calculated from the stoichiometry.')
     print('    "Zeff (Egerton, EFTEM)" -> Eq. (5.4) from Egerton, Electron Energy-Loss Spectroscopy in the Electron Microscope, Springer (2011)')
     print('    "Aeff (Egerton, EFTEM)" -> Effective atomic mass for EFTEM.')
@@ -33,6 +34,7 @@ def printHelp():
     print('\nManuca is based on the following Python packages. Please cite them if you find use in Manuca.')
     print('  NumPy (https://numpy.org/), chemparse (https://pypi.org/project/chemparse/) , mendeleev (https://github.com/lmmentel/mendeleev)')
     print(f'Manuca version: {version}, {date}, Author: Lukas Gruenewald')
+    print(f'Github: https://github.com/lukmuk/manuca')
     print('==============================================')
     
 def multi_compound(n_comp):
@@ -118,6 +120,7 @@ while True:
     meanZ_SaldickAllen = np.round(np.sum(Atpercents*Z**2)/np.sum(Atpercents*Z), decimals) #Saldick and Allen 1954
     meanZ_Joyet = np.round(np.sqrt(np.sum(Atpercents*Z**2)), decimals) #Joyet 1953, Hohn und Niedrig 1972, Büchner 1973 
     meanZ_Everhart = np.round(np.sum(Wtpercents*Z**2)/np.sum(Wtpercents*Z), decimals) #Everhart 1960, Joy 1995
+    meanZ_Donovan = np.round(np.sum(Atpercents*Z**1.8)/np.sum(Atpercents*Z**0.8), decimals) #Donovan, 2003, x=0.8
     
     ### Effective atomic number
     Zeff_Egerton = np.round(np.sum(Atpercents*Z**1.3)/np.sum(Atpercents*Z**0.3), decimals) #effective Z, Egerton for EFTEM
@@ -142,6 +145,7 @@ while True:
     print(f'Saldick & Allen (1954):\t{meanZ_SaldickAllen}')
     print(f'Joyet (1953):\t\t{meanZ_Joyet}')
     print(f'Everhart (1960):\t{meanZ_Everhart}')
+    print(f'Donovan (2003):\t\t{meanZ_Donovan}')
     print('------------------------------')
     print('Other properties:')
     print('------------------------------')
