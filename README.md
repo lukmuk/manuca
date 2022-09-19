@@ -115,6 +115,7 @@ Manuca version 0.14 calculates the following outputs:
   - Egerton (effective $Z$, and $A$ in g/mol for *inelastic* scattering for EELS/EFTEM):
     
     $\overline{Z}_\text{eff,inel}=\sum_i a_i Z^{1.3}_i/\sum_i a_i Z^{0.3}_i$
+    
     $\overline{A}_\text{eff,inel}=\sum_i a_i A^{1.3}_i/\sum_i a_i A^{0.3}_i$
     
     Eq. (5.4) from Egerton, R. F. *Electron Energy-Loss Spectroscopy in the Electron      Microscope*. (Springer US, 2011). doi:[10.1007/978-1-4419-9583-4](https://doi.org/10.1007/978-1-4419-9583-4).
