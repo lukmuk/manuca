@@ -74,7 +74,7 @@ Manuca works by utilizing [chemparse](https://pypi.org/project/chemparse/) to ev
 
 #### Output
 
-Manuca v0.1 calculates the following outputs:
+Manuca version 0.14 calculates the following outputs:
 
 - Composition in atomic % (at.%) and weight % (wt.%)
 
@@ -101,17 +101,21 @@ Manuca v0.1 calculates the following outputs:
   - Everhart (1960):
     
     $\overline{Z}=\sum_i c_i Z^2_i/\sum_i c_i Z_i$
-    
-  - [Donovan](https://doi.org/10.1017/S1431927603030137) (2003, with x = 0.8):
   
+  - [Donovan](https://doi.org/10.1017/S1431927603030137) (2003, with x = 0.8):
+    
     $\overline{Z}=\sum_i a_i Z^{1.8}_i/\sum_i a_i Z_i^{0.8}$
   
-*    Other properties:
-  
-  * Egerton (effective Z for EFTEM):
+  - Langmore (effective $Z$ for *elastic* scattering) (see also [Zhang et al.](https://doi.org/10.1016/j.ultramic.2016.09.005), and [Basha et al.](https://doi.org/10.1016/j.ultramic.2022.113570))
     
-    $\overline{Z}_\text{eff}=\sum_i a_i Z^{1.3}_i/\sum_i a_i Z^{0.3}_i$
+    $\overline{Z}_\text{eff,el}=\left(\sum_i a_i Z^{3/2}_i\right)^{2/3}$
     
-    Eq. (5.4) from Egerton, R. F. *Electron Energy-Loss Spectroscopy in the Electron Microscope*. (Springer US, 2011). doi:[10.1007/978-1-4419-9583-4](https://doi.org/10.1007/978-1-4419-9583-4).
+    Langmore et al. *Collection of scattered electrons in dark field electron -microscopy. 1. Elastic-scattering* Optik, 38 (1973), pp. 335-350
   
-  * Total and average atomic mass/molecular weight in g/mol.
+  - Egerton (effective $Z$, and $A$ in g/mol for *inelastic* scattering for EELS/EFTEM):
+    
+    $\overline{Z}_\text{eff,inel}=\sum_i a_i Z^{1.3}_i/\sum_i a_i Z^{0.3}_i$
+    $\overline{A}_\text{eff,inel}=\sum_i a_i A^{1.3}_i/\sum_i a_i A^{0.3}_i$
+    
+    Eq. (5.4) from Egerton, R. F. *Electron Energy-Loss Spectroscopy in the Electron      Microscope*. (Springer US, 2011). doi:[10.1007/978-1-4419-9583-4](https://doi.org/10.1007/978-1-4419-9583-4).
+* Total and average atomic mass/molecular weight in g/mol.
