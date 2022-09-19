@@ -114,3 +114,8 @@ Manuca version 0.14 calculates the following outputs:
     
     Eq. (5.4) from Egerton, R. F. *Electron Energy-Loss Spectroscopy in the Electron      Microscope*. (Springer US, 2011). doi:[10.1007/978-1-4419-9583-4](https://doi.org/10.1007/978-1-4419-9583-4).
 * Total and average atomic mass/molecular weight in g/mol.
+
+## Citing
+
+If you find this project useful, you *can* share/cite it via the following Zenodo DOI:  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7093893.svg)](https://doi.org/10.5281/zenodo.7093893)
