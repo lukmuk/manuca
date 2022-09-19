@@ -10,12 +10,6 @@ The name stems from it's intended use as a **M**ean **A**tomic **Nu**mber **Ca**
 
 You can explore Manuca without installing anything by opening the Binder link above in a new tab.
 
-Install the required Python packages and then run Manuca:
-
-``pip install numpy chemparse mendeleev``
-
-``python manuca.py``
-
 Enter a stoichiometry, e.g. H2O and confirm with `Enter`.
 
 <img title="H2O demo" src="images/H2O_demo.PNG" alt="Example" data-align="left">
