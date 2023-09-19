@@ -2,8 +2,8 @@ import numpy as np #https://numpy.org/
 import chemparse #https://pypi.org/project/chemparse/
 from mendeleev import element #https://github.com/lmmentel/mendeleev
 
-version = 0.14
-date = "09/2022"
+version = 0.15
+date = "09/2023"
 
 def printHelp():
     '''Print the help dialog'''
@@ -11,6 +11,7 @@ def printHelp():
     print('Usage: Enter a stoichiometric formula (e.g. H2O) and confirm with ENTER. Type "q" to quit. Enter "multi" to construct a multi-compound sample, see below.')
     print('The input is read with chemparse, which can handle complicated formulas with one level of parentheses, e.g. (Mg0.7Zn0.3)5H2(AsO4)4(H2O)10 (ICSD entry 267). ')
     print('Note: chemparse currently only handles non-nested paretheses. A formula with nested parentheses like "CH3(C2(CH3)2)3CH3" will not work properly. Please use the "multi" option instead to construct such a compound.')
+    print('Type "decimals" to adjust the number of decimals for the output (default is 3).')
     print('\nThe program will calculate and output various properties:')
     print('  "Chemical formula" -> The parsed formula read from the user input.')
     print('  "Composition table" -> Composition in atomic % (at.%) and weight % (wt.%).')
@@ -40,17 +41,17 @@ def printHelp():
 
 def multi_compound(n_comp):
     '''Create multi-compound from n_comp compounds'''
-    #mc stores compounds
+    # mc stores compounds
     mc_in = np.zeros(n_comp, dtype=[('comp', 'U500'),('conc', 'f4')])
 
-    #Grab and store sub-compound strings and relative concentrations from user input
+    # Grab and store sub-compound strings and relative concentrations from user input
     for i in range(n_comp):
             print(f'Compound {i+1} of {n_comp}.')
             comp = input('Enter stoichiometry: ')
             rel_conc = input('Enter relative concentration: ')
             mc_in[i] = (comp, rel_conc)
 
-    #Total concentration for normalization
+    # Total concentration for normalization
     mc_in['conc'] /= np.sum(mc_in['conc'])
 
     #Initialize Complete string
@@ -60,20 +61,21 @@ def multi_compound(n_comp):
     for i, c in enumerate(mc_in['comp']):
         d = chemparse.parse_formula(c)
 
-        #Normalize each compound, not useful?
-        #d_sum = sum(d.values())
-        #d.update((x, np.round(y/d_sum,4)) for x, y in d.items())
-
-        #Weight with user input
+        # Weight compounds with user input
         d.update((x, np.round(y*mc_in['conc'][i],4)) for x, y in d.items())
         for ele, r in d.items():
             S += ele
             S += str(r)
     return S
 
+
+
 print(f'Manuca - Mean Atomic Number calculator (v{version})')
-print('Enter "help" to show further information. Enter "q" to quit. Enter "multi" to construct a multi-compound sample.')
+print('Enter "help" to show further information. Enter "q" to quit. Enter "multi" to construct a multi-compound sample. Enter "decimals" to adjust the number of shown decimals.')
 print(f'Manuca comes without any warranty for correctness. PLEASE double-check the outputs and if the input stoichiometry is read in correctly.')
+
+decimals = 3 
+
 while True:
     user_input = input("Enter stoichiometry: ")
     if(user_input == 'q'):
@@ -84,6 +86,9 @@ while True:
     if(user_input == 'multi'):
         n_comp = int(input("Enter number of compounds: "))
         multicompound = multi_compound(n_comp)
+    if(user_input == 'decimals'):
+        n_decimals = int(input("Enter number of decimals to print: "))
+        decimals = n_decimals
 
     # Dictionary from chemparse with values
     if(user_input == 'multi'):
@@ -108,52 +113,67 @@ while True:
     ### Weight percentages
     aw = np.array([element.atomic_weight for element in m])
     n_weight = np.sum(w/n*aw)
-    d_wtp = {k: v/n*aw[i]/n_weight for i, (k, v) in enumerate(d.items())}
+    d_wtp = {k: v/n*aw[i]/n_weight for i, (k, v) in enumerate(d.items())} 
 
     ### Mean atomic numbers
-    decimals = 3
     Z = np.array([element.atomic_number for element in m])
     Wtpercents = np.fromiter(d_wtp.values(), dtype='float')
     Atpercents = np.fromiter(d_atp.values(), dtype='float')
 
-    meanZ_Average = np.round(np.sum(w/n*Z), decimals) #Simple average based on atomic proportions
-    meanZ_Mueller = np.round(np.sum(Z*Wtpercents), decimals) #Mueller 1954
-    meanZ_SaldickAllen = np.round(np.sum(Atpercents*Z**2)/np.sum(Atpercents*Z), decimals) #Saldick and Allen 1954
-    meanZ_Joyet = np.round(np.sqrt(np.sum(Atpercents*Z**2)), decimals) #Joyet 1953, Hohn und Niedrig 1972, Büchner 1973
-    meanZ_Everhart = np.round(np.sum(Wtpercents*Z**2)/np.sum(Wtpercents*Z), decimals) #Everhart 1960, Joy 1995
-    meanZ_Donovan = np.round(np.sum(Atpercents*Z**1.8)/np.sum(Atpercents*Z**0.8), decimals) #Donovan, 2003, x=0.8
+    meanZ_Average = np.sum(w/n*Z) #Simple average based on atomic proportions
+    meanZ_Mueller = np.sum(Z*Wtpercents) #Mueller 1954
+    meanZ_SaldickAllen = np.sum(Atpercents*Z**2)/np.sum(Atpercents*Z) #Saldick and Allen 1954
+    meanZ_Joyet = np.sqrt(np.sum(Atpercents*Z**2)) #Joyet 1953, Hohn und Niedrig 1972, Büchner 1973
+    meanZ_Everhart = np.sum(Wtpercents*Z**2)/np.sum(Wtpercents*Z) #Everhart 1960, Joy 1995
+    meanZ_Donovan_lowZ = np.sum((Atpercents*Z**0.8)/np.sum(Atpercents*Z**0.8)*Z)  #Donovan, 2003, x=0.8, low Z
+    meanZ_Donovan_highZ = np.sum((Atpercents*Z**0.7)/np.sum(Atpercents*Z**0.7)*Z) #Donovan, 2003, x=0.7, high Z
 
+    ### Electron fractions in percent, see Donovan, 2003, eq.3, https://doi.org/10.1017/S1431927603030137 
+    zi = Atpercents*Z/np.sum(Atpercents*Z)
+    
     ### Effective atomic number
-    Zeff_Langmore = np.round(np.power(np.sum(Atpercents*Z**1.5), 2/3) , decimals) # effective Z for elastic scattering, Langmore, J.P. and Wall, J. and Isaacson, M.S., Optik 38 1973
-    Zeff_Egerton = np.round(np.sum(Atpercents*Z**1.3)/np.sum(Atpercents*Z**0.3), decimals) #effective Z for inelastic scattering, Egerton for EFTEM
-    Aeff_Egerton = np.round(np.sum(Atpercents*aw**1.3)/np.sum(Atpercents*aw**0.3), decimals) #effective A or inelastic scattering, Egerton for EFTEM
+    Zeff_Langmore = np.power(np.sum(Atpercents*Z**1.5), 2/3) # effective Z for elastic scattering, Langmore, J.P. and Wall, J. and Isaacson, M.S., Optik 38 1973
+    Zeff_Egerton = np.sum(Atpercents*Z**1.3)/np.sum(Atpercents*Z**0.3) #effective Z for inelastic scattering, Egerton for EFTEM
+    Aeff_Egerton = np.sum(Atpercents*aw**1.3)/np.sum(Atpercents*aw**0.3) #effective A or inelastic scattering, Egerton for EFTEM
+
+    ### Other properties
+    bse_yields = -0.0254 + 0.016*Z- 1.86*1e-4*Z**2 + 8.3*1e-7*Z**3 # Approximation for mean backscatter electron yield (Goldstein et al. Scanning electron microscopy and Xray microanalysis, 2018, p. 17)
+    bse_yield = np.sum(bse_yields*Wtpercents)
 
     ### Atomic mass
-    tot_atomic_mass = np.round(np.sum(w*aw), decimals)
-    avg_atomic_mass = np.round(np.sum(w/n*aw), decimals)
+    tot_atomic_mass = np.sum(w*aw)
+    avg_atomic_mass = np.sum(w/n*aw)
 
     ### Print results
     print('Chemical formula:')
     print(chemparse.parse_formula(parse))
-    print('------------------------------')
-    print('Element\t at.%\t','wt.%')
+    print('--------------------------------')
+    print('Composition:')
+    print('Element\t at.%\t\t','wt.%')
     for key, value in d_atp.items():
-        print(key,'\t', np.round(value*100,2),'\t',np.round(d_wtp[key]*100,2))
-    print('------------------------------')
+        print(key,'\t', np.round(value*100, decimals),'\t',np.round(d_wtp[key]*100, decimals))
+    print('--------------------------------')
+    print('Electron fractions:')
+    print('Element\t Electron fraction in %')
+    for i, key in enumerate(d):
+        print (key,'\t', np.round(zi[i]*100,decimals))
+    print('--------------------------------')
     print('Mean atomic numbers:')
+    print('--------------------------------')
+    print(f'Atomic-percent average:\t{meanZ_Average:.{decimals}f}')
+    print(f'Mueller (1954):\t\t{meanZ_Mueller:.{decimals}f}')
+    print(f'Saldick & Allen (1954):\t{meanZ_SaldickAllen:.{decimals}f}')
+    print(f'Joyet (1953):\t\t{meanZ_Joyet:.{decimals}f}')
+    print(f'Everhart (1960):\t{meanZ_Everhart:.{decimals}f}')
+    print(f'Donovan (2003, x=0.8):\t{meanZ_Donovan_lowZ:.{decimals}f}')
+    print(f'Donovan (2003, x=0.7):\t{meanZ_Donovan_highZ:.{decimals}f}')
     print('------------------------------')
-    print(f'Atomic-percent average:\t{meanZ_Average}')
-    print(f'Mueller (1954):\t\t{meanZ_Mueller}')
-    print(f'Saldick & Allen (1954):\t{meanZ_SaldickAllen}')
-    print(f'Joyet (1953):\t\t{meanZ_Joyet}')
-    print(f'Everhart (1960):\t{meanZ_Everhart}')
-    print(f'Donovan (2003):\t\t{meanZ_Donovan}')
-    print('------------------------------')
-    print(f'Zeff (el, Langmore):\t{Zeff_Langmore}')
-    print(f'Zeff (inel, Egerton):\t{Zeff_Egerton}')
-    print('------------------------------')
+    print(f'Zeff (el, Langmore):\t{Zeff_Langmore:.{decimals}f}')
+    print(f'Zeff (inel, Egerton):\t{Zeff_Egerton:.{decimals}f}')
+    print('--------------------------------')
     print('Other properties:')
-    print(f'Aeff (inel, Egerton):\t{Aeff_Egerton}')
-    print(f'Tot. A (g/mol):\t\t{tot_atomic_mass}')
-    print(f'Avg. A (g/mol):\t\t{avg_atomic_mass}')
-    print('==============================\n')
+    print(f'Aeff (inel, Egerton):\t{Aeff_Egerton:.{decimals}f}')
+    print(f'Tot. A (g/mol):\t\t{tot_atomic_mass:.{decimals}f}')
+    print(f'Avg. A (g/mol):\t\t{avg_atomic_mass:.{decimals}f}')
+    print(f'BSE yield:\t\t{bse_yield:.{decimals}f}')
+    print('================================\n')
