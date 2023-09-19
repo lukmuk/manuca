@@ -98,9 +98,10 @@ Manuca version 0.14 calculates the following outputs:
     
     $\overline{Z}=\sum_i c_i Z^2_i/\sum_i c_i Z_i$
   
-  - [Donovan](https://doi.org/10.1017/S1431927603030137) (2003, with x = 0.8):
+  - [Donovan](https://doi.org/10.1017/S1431927603030137) (2003, with x = 0.8 and x = 0.7):
     
-    $\overline{Z}=\sum_i a_i Z^{1.8}_i/\sum_i a_i Z_i^{0.8}$
+    $\overline{Z}=\sum_i a_i Z^{1.8}_i/\sum_i a_i Z_i^{0.8}$  
+    $\overline{Z}=\sum_i a_i Z^{1.7}_i/\sum_i a_i Z_i^{0.7}$
   
   - Langmore (effective $Z$ for *elastic* scattering) (see also [Zhang et al.](https://doi.org/10.1016/j.ultramic.2016.09.005), and [Basha et al.](https://doi.org/10.1016/j.ultramic.2022.113570))
     
@@ -116,6 +117,12 @@ Manuca version 0.14 calculates the following outputs:
     
     Eq. (5.4) from Egerton, R. F. *Electron Energy-Loss Spectroscopy in the Electron      Microscope*. (Springer US, 2011). doi:[10.1007/978-1-4419-9583-4](https://doi.org/10.1007/978-1-4419-9583-4).
 * Total and average atomic mass/molecular weight in g/mol.
+* Backscatter electron coefficient/yield:
+  
+  $\eta_i = -0.0254 + 0.016 \cdot Z_i - 1.86 \cdot 10^{-4}\cdot Z_i^2 + 8.3\cdot10^{-7}\cdot Z_i^3$  
+  $\eta = \sum_i c_i \eta_i$  
+  
+  Goldstein et al., Scanning Electron Microscopy and X-Ray Microanalysis, 2018, p. 17.
 
 ## Citing
 
