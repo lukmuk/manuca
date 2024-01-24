@@ -117,7 +117,7 @@ Manuca version 0.14 calculates the following outputs:
     
     Eq. (5.4) from Egerton, R. F. *Electron Energy-Loss Spectroscopy in the Electron      Microscope*. (Springer US, 2011). doi:[10.1007/978-1-4419-9583-4](https://doi.org/10.1007/978-1-4419-9583-4).
 * Total and average atomic mass/molecular weight in g/mol.
-* Backscatter electron coefficient/yield:
+* Backscatter electron coefficient/yield (at 20 keV):
   
   $\eta_i = -0.0254 + 0.016 \cdot Z_i - 1.86 \cdot 10^{-4}\cdot Z_i^2 + 8.3\cdot10^{-7}\cdot Z_i^3$  
   $\eta = \sum_i c_i \eta_i$  
