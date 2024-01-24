@@ -137,7 +137,7 @@ while True:
     Aeff_Egerton = np.sum(Atpercents*aw**1.3)/np.sum(Atpercents*aw**0.3) #effective A or inelastic scattering, Egerton for EFTEM
 
     ### Other properties
-    bse_yields = -0.0254 + 0.016*Z- 1.86*1e-4*Z**2 + 8.3*1e-7*Z**3 # Approximation for mean backscatter electron yield (Goldstein et al. Scanning electron microscopy and Xray microanalysis, 2018, p. 17)
+    bse_yields = -0.0254 + 0.016*Z- 1.86*1e-4*Z**2 + 8.3*1e-7*Z**3 # Approximation for mean backscatter electron yield at 20 keV (Goldstein et al. Scanning electron microscopy and Xray microanalysis, 2018, p. 17)
     bse_yield = np.sum(bse_yields*Wtpercents)
 
     ### Atomic mass
@@ -175,5 +175,5 @@ while True:
     print(f'Aeff (inel, Egerton):\t{Aeff_Egerton:.{decimals}f}')
     print(f'Tot. A (g/mol):\t\t{tot_atomic_mass:.{decimals}f}')
     print(f'Avg. A (g/mol):\t\t{avg_atomic_mass:.{decimals}f}')
-    print(f'BSE yield:\t\t{bse_yield:.{decimals}f}')
+    print(f'BSE yield @ 20 keV:\t{bse_yield:.{decimals}f}')
     print('================================\n')
